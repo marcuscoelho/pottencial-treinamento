@@ -1,11 +1,13 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Pottencial.Invoices.Api.Filters;
 using Pottencial.Invoices.Repositories.Invoices.Context;
 using Pottencial.Invoices.Repositories.Invoices.Repositories;
 using Pottencial.Invoices.UseCases.Invoices.UseCases;
@@ -23,7 +25,7 @@ namespace Pottencial.Invoices.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add<HttpResponseExceptionFilter>());
 
             services
                 .AddScoped<InvoiceUseCases>()
