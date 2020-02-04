@@ -7,9 +7,9 @@ namespace Pottencial.Invoices.Api.Tests.Fakers
 {
     public static class InvoiceFaker
     {
-        public static Invoice Create(int number, string customer = null, DateTime? date = null, Status? status = null, int? items = null)
+        public static Invoice Create(int number, string customer = null, DateTime? date = null, InvoiceStatus? status = null, int? items = null)
         {
-            var itemFaker = new Faker<Item>()
+            var itemFaker = new Faker<InvoiceItem>()
                 .RuleFor(item => item.Description, faker => faker.Lorem.Sentence())
                 .RuleFor(item => item.Quantity, faker => faker.Random.Decimal(1, 10))
                 .RuleFor(item => item.UnitPrice, faker => faker.Random.Decimal(1, 100));
@@ -18,7 +18,7 @@ namespace Pottencial.Invoices.Api.Tests.Fakers
                 .RuleFor(invoice => invoice.Number, faker => number)
                 .RuleFor(invoice => invoice.Customer, faker => customer ?? faker.Name.FullName())
                 .RuleFor(invoice => invoice.Date, faker => date ?? DateTime.Today)
-                .RuleFor(invoice => invoice.Status, faker => status ?? Status.Created)
+                .RuleFor(invoice => invoice.Status, faker => status ?? InvoiceStatus.Created)
                 .RuleFor(invoice => invoice.Items, faker => itemFaker.Generate(faker.Random.Int(1, items ?? 5)))
                 .FinishWith((faker, invoice) =>
                 {

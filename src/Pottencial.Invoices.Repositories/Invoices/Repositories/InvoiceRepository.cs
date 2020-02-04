@@ -18,7 +18,7 @@ namespace Pottencial.Invoices.Repositories.Invoices.Repositories
         {
             IQueryable<Invoice> invoices = Context.Set<Invoice>()
                 .Include(x => x.Items)
-                .Where(x => x.Status != Status.Cancelled);
+                .Where(x => x.Status != InvoiceStatus.Cancelled);
 
             if (!string.IsNullOrWhiteSpace(customer))
             {

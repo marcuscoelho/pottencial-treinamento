@@ -38,7 +38,7 @@ namespace Pottencial.Invoices.UseCases.Invoices.UseCases
             {
                 errors.Add("Invoice amount must be greater than or equal to 0");
             }
-            else if (invoice.Amount != (invoice.Items ?? Enumerable.Empty<Item>()).Sum(x => x.Amount))
+            else if (invoice.Amount != (invoice.Items ?? Enumerable.Empty<InvoiceItem>()).Sum(x => x.Amount))
             {
                 errors.Add("Invoice amount must be equal to the sum of items amount");
             }
@@ -48,7 +48,7 @@ namespace Pottencial.Invoices.UseCases.Invoices.UseCases
                 errors.Add("Invoice customer must not be null or empty");
             }
 
-            if (invoice.Status != Status.Created)
+            if (invoice.Status != InvoiceStatus.Created)
             {
                 errors.Add("Invoice status must be created");
             }

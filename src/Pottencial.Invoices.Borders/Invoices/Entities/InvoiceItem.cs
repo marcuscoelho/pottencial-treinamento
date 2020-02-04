@@ -1,6 +1,6 @@
 ﻿namespace Pottencial.Invoices.Borders.Invoices.Entities
 {
-    public class Item
+    public class InvoiceItem
     {
         public int Id { get; set; }
 

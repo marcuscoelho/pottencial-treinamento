@@ -24,12 +24,12 @@ namespace Pottencial.Invoices.UseCases.Invoices.UseCases
                 throw new InvoiceNotFoundException(request.Number);
             }
 
-            if (invoice.Status == Status.Cancelled)
+            if (invoice.Status == InvoiceStatus.Cancelled)
             {
                 throw new InvalidInvoiceOperationException(request.Number, "Submit");
             }
 
-            invoice.Status = Status.Submitted;
+            invoice.Status = InvoiceStatus.Submitted;
 
             await _repository.Update(invoice);
         }

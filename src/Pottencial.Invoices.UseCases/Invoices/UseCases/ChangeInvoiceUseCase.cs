@@ -29,7 +29,7 @@ namespace Pottencial.Invoices.UseCases.Invoices.UseCases
                 throw new InvoiceNotFoundException(invoice.Number);
             }
 
-            if (existing.Status != Status.Created)
+            if (existing.Status != InvoiceStatus.Created)
             {
                 throw new InvalidInvoiceOperationException(invoice.Number, "Change");
             }
@@ -70,7 +70,7 @@ namespace Pottencial.Invoices.UseCases.Invoices.UseCases
             {
                 errors.Add("Invoice amount must be greater than or equal to 0");
             }
-            else if (invoice.Amount != (invoice.Items ?? Enumerable.Empty<Item>()).Sum(x => x.Amount))
+            else if (invoice.Amount != (invoice.Items ?? Enumerable.Empty<InvoiceItem>()).Sum(x => x.Amount))
             {
                 errors.Add("Invoice amount must be equal to the sum of items amount");
             }

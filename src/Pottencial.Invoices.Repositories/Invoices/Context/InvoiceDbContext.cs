@@ -16,7 +16,7 @@ namespace Pottencial.Invoices.Repositories.Invoices.Context
             invoice.HasKey(x => x.Id);
             invoice.Property(x => x.Customer).IsRequired().HasMaxLength(100).IsUnicode(false);
 
-            var invoiceItem = modelBuilder.Entity<Item>();
+            var invoiceItem = modelBuilder.Entity<InvoiceItem>();
             invoiceItem.HasKey(x => x.Id);
             invoiceItem.Property(x => x.Description).IsRequired().HasMaxLength(100).IsUnicode(false);
         }

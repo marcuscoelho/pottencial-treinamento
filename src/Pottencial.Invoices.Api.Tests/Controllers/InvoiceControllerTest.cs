@@ -36,16 +36,16 @@ namespace Pottencial.Invoices.Api.Tests.Controllers
 
             context.Invoices.Add(InvoiceFaker.Create(1, "Joao"));
             context.Invoices.Add(InvoiceFaker.Create(2, "Joao"));
-            context.Invoices.Add(InvoiceFaker.Create(3, "Joao", status: Status.Cancelled));
+            context.Invoices.Add(InvoiceFaker.Create(3, "Joao", status: InvoiceStatus.Cancelled));
             context.Invoices.Add(InvoiceFaker.Create(4, "Maria"));
-            context.Invoices.Add(InvoiceFaker.Create(5, "Maria", status: Status.Cancelled));
-            context.Invoices.Add(InvoiceFaker.Create(6, "Maria", status: Status.Submitted));
+            context.Invoices.Add(InvoiceFaker.Create(5, "Maria", status: InvoiceStatus.Cancelled));
+            context.Invoices.Add(InvoiceFaker.Create(6, "Maria", status: InvoiceStatus.Submitted));
             context.Invoices.Add(InvoiceFaker.Create(7, "Jose"));
-            context.Invoices.Add(InvoiceFaker.Create(8, "Jose", status: Status.Cancelled));
-            context.Invoices.Add(InvoiceFaker.Create(9, "Jose", status: Status.Submitted));
+            context.Invoices.Add(InvoiceFaker.Create(8, "Jose", status: InvoiceStatus.Cancelled));
+            context.Invoices.Add(InvoiceFaker.Create(9, "Jose", status: InvoiceStatus.Submitted));
             context.Invoices.Add(InvoiceFaker.Create(10, "Pedro"));
-            context.Invoices.Add(InvoiceFaker.Create(11, "Pedro", status: Status.Cancelled));
-            context.Invoices.Add(InvoiceFaker.Create(12, "Pedro", status: Status.Submitted));
+            context.Invoices.Add(InvoiceFaker.Create(11, "Pedro", status: InvoiceStatus.Cancelled));
+            context.Invoices.Add(InvoiceFaker.Create(12, "Pedro", status: InvoiceStatus.Submitted));
 
             context.SaveChanges();
         }
@@ -68,7 +68,7 @@ namespace Pottencial.Invoices.Api.Tests.Controllers
 
             foreach (var invoice in result)
             {
-                Assert.NotEqual((int)Status.Cancelled, (int)invoice.status);
+                Assert.NotEqual((int)InvoiceStatus.Cancelled, (int)invoice.status);
             }
         }
 
