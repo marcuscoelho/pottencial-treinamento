@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Pottencial.Invoices.Repositories.Invoices.Repositories
@@ -13,16 +14,40 @@ namespace Pottencial.Invoices.Repositories.Invoices.Repositories
             Context = context;
         }
 
-        public virtual async Task Insert(T entity)
+        public async Task Insert(T entity)
         {
+            BeforeInsert(entity);
+            
             Context.Add(entity);
             await Context.SaveChangesAsync();
+
+            AfterInsert(entity);
         }
 
-        public virtual async Task Update(T entity)
+        protected virtual void AfterInsert(T entity)
         {
+        }
+
+        protected virtual void BeforeInsert(T entity)
+        {
+        }
+
+        public async Task Update(T entity)
+        {
+            BeforeUpdate(entity);
+
             Context.Entry(entity).State = EntityState.Modified;
             await Context.SaveChangesAsync();
+
+            AfterUpdate(entity);
+        }
+
+        protected virtual void BeforeUpdate(T entity)
+        {
+        }
+
+        protected virtual void AfterUpdate(T entity)
+        {
         }
 
         public virtual async Task Delete(T entity)
