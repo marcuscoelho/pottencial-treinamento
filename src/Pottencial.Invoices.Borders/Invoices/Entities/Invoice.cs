@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pottencial.Invoices.Borders.Invoices.Entities
 {
@@ -11,7 +12,10 @@ namespace Pottencial.Invoices.Borders.Invoices.Entities
 
         public DateTime Date { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal Amount
+        {
+            get { return Items?.Sum(x => x.Amount) ?? 0.0m; }
+        }
 
         public string Customer { get; set; }
 
